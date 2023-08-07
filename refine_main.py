@@ -1,5 +1,9 @@
+#!/usr/bin/env python3
 import sys
 import subprocess as sp
+
+def print_help():
+    print("usage: refine_main.py video_name.log video_path")
 
 
 def get_logfile_from_arg() -> str:
