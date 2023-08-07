@@ -2,6 +2,9 @@
 *.plan
 *.timestamp
 *.mp4
+*.mkv
+*.jpg
+*.png
 
 ## Python Start
 
