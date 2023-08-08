@@ -8,6 +8,9 @@
 *.txt
 *.webm
 ./moviepy
+moviepy
+*.mp3
+
 
 ## Python Start
 
