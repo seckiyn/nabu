@@ -2,6 +2,8 @@
 import sys
 import subprocess as sp
 
+# TODO: Add if ss or to is null don't add them
+# TODO: Exit the mpv after it's successfully executed
 def print_help():
     print("usage: refine_main.py video_name.log video_path")
 

@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
 import sys
 import subprocess as sp
+from moviepy import *
+
 
 def print_help():
     print("usage: trim.py video.timestamp video_path")
@@ -31,12 +33,17 @@ def ffmpeg_trim(video: str, index: int, start: str, end: str) -> bool:
     
 def trim_video_by_file():
     timestamp_file, videopath = get_arguments()
+    video_objects = list()
     with open(timestamp_file) as file:
         for index, timestamp in enumerate(file.readlines()):
             timestamp = timestamp.strip()
             if not timestamp: continue
             parsed_timestamp = parse_timestamp(timestamp)
-            ffmpeg_trim(videopath, index, *parsed_timestamp)
+            ss, to = parsed_timestamp
+            video_objects.append(VideoFileClip(videopath).subclip(ss, to))
+    # Build
+    concatenate_videoclips(video_objects).write_videofile("{video_path}.final.mp4")
+
 
 if __name__ == "__main__":
     trim_video_by_file()
