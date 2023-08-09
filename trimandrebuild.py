@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
 import sys
+import os
 import subprocess as sp
 from moviepy import *
 
 
+WORKING_DIR = os.getcwd()
+
+# TODO: Add a way to slice into section like if there's 100 timestamps if user wants it in 4 parts there'll videos consisting of 25 25 25 25
 def print_help():
     print("usage: trim.py video.timestamp video_path")
 
@@ -33,6 +37,8 @@ def ffmpeg_trim(video: str, index: int, start: str, end: str) -> bool:
     
 def trim_video_by_file():
     timestamp_file, videopath = get_arguments()
+    timestamp_file = os.path.join(WORKING_DIR, timestamp_file)
+    videopath = os.path.join(WORKING_DIR, videopath)
     video_objects = list()
     with open(timestamp_file) as file:
         for index, timestamp in enumerate(file.readlines()):
@@ -42,7 +48,7 @@ def trim_video_by_file():
             ss, to = parsed_timestamp
             video_objects.append(VideoFileClip(videopath).subclip(ss, to))
     # Build
-    concatenate_videoclips(video_objects).write_videofile("{video_path}.final.mp4")
+    concatenate_videoclips(video_objects).write_videofile(f"{videopath}.final.mp4")
 
 
 if __name__ == "__main__":

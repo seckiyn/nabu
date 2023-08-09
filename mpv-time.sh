@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-mpv --script=time.lua $1
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+mpv --script="$SCRIPT_DIR/time.lua" $1
