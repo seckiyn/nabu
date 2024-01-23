@@ -22,6 +22,10 @@ times will save to a timestamp file (specifically videopath/videoname.videoexten
 
 Use trim.py to trim given start and end points. Trim.py will iterate over said timestamp file and will trim chosen times. It saves them as 'videopath/videoname.videoextension.**index**.mp4'
 
+./mpv-time.sh name_of_the_video.mp4
+./main_refine.py name_of_the_video.mp4 name_of_the_video.mp4.log
+./trim.py name_of_the_video.mp4 name_of_the_video.mp4.timestamp
+
 
 
 ## TODO
